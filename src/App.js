@@ -1,58 +1,93 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useContext } from "react";
+import Main from "./Main";
+import categoryElementsData from "./components/ProductCategoryFolder/categoryElementsData";
+import CategoryPagesCreator from "./components/ProductCategoryFolder/categoryPagesCreator";
+import "./App.css";
+import ProductDescription from "./components/productDescription";
+import CartPage from "./components/cartFolder/cartPage";
+import StoreFinder from "./components/NavBar/navOptions/allNavPages/StoreFinder";
+import SignUpPage from "./components/signInPage/signUpPage";
+import MyAccount from "./components/NavBar/myAccount";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+import Root from "./components/Root";
+import { appContext } from "./Context";
+
+export default function App() {
+  const { categories, data, favoriteItems } = useContext(appContext);
+  const routeElements = [];
+  for (let categoryObj in categories) {
+    const categoryPathObj = categoryElementsData.filter(
+      (ele) => ele.link == categoryObj
+    );
+    const categoryData = categories[categoryObj];
+    routeElements.push(
+      <Route
+        path={`${categoryPathObj[0].link}`}
+        element={
+          <CategoryPagesCreator
+            loader={{
+              data: categoryData,
+              categoryName: categoryPathObj[0].title,
+            }}
+          />
+        }
+      ></Route>
+    );
+  }
+
+  const dataArrayCreater = (object) => {
+    const newAllarray = [];
+    for (let i in object) {
+      object[i].forEach((ele) => {
+        newAllarray.push(ele);
+      });
+    }
+    return newAllarray;
+  };
+
+  const allData = dataArrayCreater(categories);
+
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Root />}>
+        <Route index element={<Main />} />
+        {routeElements}
+        <Route
+          path="more-all-products"
+          element={
+            <CategoryPagesCreator
+              loader={{
+                data: allData,
+                categoryName: "All Categories",
+              }}
+            />
+          }
+        />
+        <Route path="cart" element={<CartPage />} />
+        <Route path=":id" element={<ProductDescription />} />
+        <Route path="storeFinder" element={<StoreFinder />} />
+
+        <Route
+          path="favorite-products"
+          element={
+            <CategoryPagesCreator
+              loader={{
+                data: favoriteItems,
+                categoryName: "Favorite Products",
+              }}
+            />
+          }
+        />
+        <Route path="my-account" element={<MyAccount />} />
+      </Route>
+    )
   );
-}
 
-export default App;
+  return <RouterProvider router={router} />;
+}
