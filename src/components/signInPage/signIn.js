@@ -1,15 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { appContext } from "../../Context";
 import ButtonSpinner from "../buttonSpinner";
 import CrossButton from "./crossButton";
+
 const SignIn = () => {
   const [isButtonSpinner, setButtonSpinner] = useState(false);
   const {
     setIsActiveSignIn,
+
     setIsActiveSignUp,
+
     userAccounts,
     setActiveAccount,
   } = useContext(appContext);
+
   const [loginData, setLoginData] = useState({
     userName: "",
     password: "",

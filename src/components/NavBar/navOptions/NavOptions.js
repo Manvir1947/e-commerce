@@ -3,11 +3,10 @@ import { Route, Routes } from "react-router-dom";
 import Clothings from "./allNavPages/Clothings";
 import ElectricalAppliances from "./allNavPages/ElectricalAppliances";
 import StoreFinder from "./allNavPages/StoreFinder";
-import SignIn from "./allNavPages/SignIn";
-import Cart from "./allNavPages/Cart";
-import Flyers from "./allNavPages/Flyers";
+
 import Deals from "./allNavPages/Deals";
 import ProductLinks from "./ProductLinks";
+import Flyers from "./allNavPages/Flyers";
 
 const NavOptions = () => {
   return (
@@ -23,6 +22,7 @@ const NavOptions = () => {
             path="/electricalAppliances"
             element={<ElectricalAppliances />}
           />
+          <Route path="/flyers" element={<Flyers />} />
           <Route path="/deals" element={<Deals />} />
           <Route path="/storeFinder" element={<StoreFinder />} />
         </Routes>

@@ -2,17 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ProductLinks = () => {
+ 
   return (
     <nav className="nav-options-list flex-row">
       <li>
         <Link to={"/clothing"}>Clothing</Link>
       </li>
-      <li>
-        <Link to={"/electricalAppliances"}>Electrical Appliances</Link>
-      </li>
-      <li>
-        <Link to={"/deals"}>Deals</Link>
-      </li>
+
       <li>
         <Link to={"/storeFinder"}>
           <div className="flex-row">

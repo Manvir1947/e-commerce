@@ -6,9 +6,9 @@ const FooterElement = (props) => {
   const listElement = links.map((ele, index) => {
     return (
       <li>
-        <Link key={index} className="footer-links" to={ele}>
+        <a href="#" key={index} className="footer-links" to={ele}>
           {textTitles[index]}
-        </Link>
+        </a>
       </li>
     );
   });

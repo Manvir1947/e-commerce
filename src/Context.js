@@ -16,7 +16,6 @@ const AppContextProvider = (props) => {
   const [cartItems, setCartItems] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [favoriteItems, setFavoriteItems] = useState([]);
-  // const [clickedTarget, setClickedTarget] = useState("");
 
   const [downArrowBool, setDownArrowBool] = useState(false);
 
@@ -103,7 +102,7 @@ const AppContextProvider = (props) => {
         .toLowerCase()
         .split(" ")
         .forEach((titleStr) => {
-          const inputDataArray = inputData.trim().split(" ");
+          const inputDataArray = inputData.toLowerCase().trim().split(" ");
           inputDataArray.forEach((inputStr) => {
             if (
               titleStr == inputStr &&

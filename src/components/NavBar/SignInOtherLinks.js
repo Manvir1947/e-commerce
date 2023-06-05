@@ -1,9 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import Flyers from "./navOptions/allNavPages/Flyers";
 import AccountNameOptions from "./accountNameOptions";
 import { appContext } from "../../Context";
+import OverFlowBackgroundHidden from "../overFlowBackgroundHidden";
 const SignInOtherLinks = () => {
+  const [isFlyerPage, setIsFlyerPage] = useState(false);
+  const BackgroundOverFlow = OverFlowBackgroundHidden();
+
   const { cartItems, setIsActiveSignIn, activeAccount } =
     useContext(appContext);
   const cartFill = cartItems.length > 0 ? "#2f7af4" : "none";
@@ -21,12 +25,18 @@ const SignInOtherLinks = () => {
       </div>
     </>
   );
+  BackgroundOverFlow(isFlyerPage);
+
   return (
     <nav className="signin-flyer-cart-div nav-options-list flex-row">
       <li>
-        <Link
+        {" "}
+        {isFlyerPage && <Flyers setIsFlyerPage={setIsFlyerPage} />}
+        <div
+          onClick={() => {
+            setIsFlyerPage(true);
+          }}
           className="flex-row flyer-icon search-bar--navbar-links "
-          to={"/flyers"}
         >
           <svg
             className="navbar--svg-icons"
@@ -148,7 +158,7 @@ const SignInOtherLinks = () => {
             </g>
           </svg>
           <h3 className="search-bar--navbar-links">Flyers</h3>
-        </Link>
+        </div>
       </li>
       <li>{activeUser}</li>
       <li className="cart-list-item">

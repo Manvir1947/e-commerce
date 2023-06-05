@@ -24,41 +24,43 @@ const Product = ({ product }) => {
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseLeave}
       >
-        <div className="product-heart-div">
-          {hover && !isFound[0] && (
-            <div
-              onClick={() => {
-                funAddFavoriteItem(product);
-              }}
-            >
-              <ProductHeart />
-            </div>
-          )}
-          {isFound[0] && (
-            <div
-              onClick={() => {
-                funAddFavoriteItem(product);
-              }}
-            >
-              {" "}
-              <ProductHeart className={"heart-full"} />
-            </div>
-          )}
-        </div>
-        <Link className="single-product-link" to={`/${product.id}`}>
+        <div className="single-product-link">
           <div className="single-product-Image-div flex-column">
-            <img
-              src={product.image || product.images[0]}
-              className="single-product-img"
-              alt="Product Image"
-            />
+            <div className="product-heart-div">
+              {hover && !isFound[0] && (
+                <div
+                  onClick={(e) => {
+                    funAddFavoriteItem(product);
+                  }}
+                >
+                  <ProductHeart />
+                </div>
+              )}
+              {isFound[0] && (
+                <div
+                  onClick={() => {
+                    funAddFavoriteItem(product);
+                  }}
+                >
+                  {" "}
+                  <ProductHeart className={"heart-full"} />
+                </div>
+              )}
+            </div>
+            <Link className="single-product-link" to={`/${product.id}`}>
+              <img
+                src={product.image || product.images[0]}
+                className="single-product-img"
+                alt="Product Image"
+              />
 
-            <h2 className="single-product-title">{product.title}</h2>
-            <h3 className="single-product-price">
-              {"$" + product.price.toFixed(2)}
-            </h3>
+              <h2 className="single-product-title">{product.title}</h2>
+              <h3 className="single-product-price">
+                {"$" + product.price.toFixed(2)}
+              </h3>
+            </Link>
           </div>
-        </Link>
+        </div>
       </div>
     );
   }

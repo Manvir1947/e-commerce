@@ -1,10 +1,10 @@
 import React from "react";
+import ZoomableDraggableImage from "./draggablePic";
 
-const Flyers = () => {
+const Flyers = ({ setIsFlyerPage }) => {
   return (
-    <div>
-      
-      Flyers
+    <div className="flyer-section">
+      <ZoomableDraggableImage setIsFlyerPage={setIsFlyerPage} />
     </div>
   );
 };

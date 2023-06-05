@@ -1,6 +1,5 @@
 import React from "react";
 import Product from "../ProductElement";
-import { useLocation } from "react-router-dom";
 
 const CategoryPagesCreator = (props) => {
   const { categoryName, data } = props.loader;

@@ -17,6 +17,7 @@ import {
 
 import Root from "./components/Root";
 import { appContext } from "./Context";
+import Clothings from "./components/NavBar/navOptions/allNavPages/Clothings";
 
 export default function App() {
   const { categories, data, favoriteItems } = useContext(appContext);
@@ -72,6 +73,7 @@ export default function App() {
         <Route path="cart" element={<CartPage />} />
         <Route path=":id" element={<ProductDescription />} />
         <Route path="storeFinder" element={<StoreFinder />} />
+        <Route path="clothing" element={<Clothings />} />
 
         <Route
           path="favorite-products"

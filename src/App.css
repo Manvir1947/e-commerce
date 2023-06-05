@@ -12,6 +12,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 .flex-column {
   display: flex;
   flex-direction: column;
@@ -21,6 +22,9 @@ body {
   font-size: 62.5%;
   font-family: "Roboto", sans-serif;
   background-color: var(--body-silver-color);
+}
+body.modal-open {
+  overflow: hidden !important;
 }
 /* General Properties */
 .flex-row {
@@ -154,7 +158,7 @@ body {
   padding: 0 1rem;
 }
 .nav-options-list *:hover {
-  color: var(--text-hover-color);
+  /* color: var(--text-hover-color); */
 }
 .sign-in-option-text {
   display: flex;
@@ -164,6 +168,7 @@ body {
 
 .all-navbar-links {
   gap: 3rem;
+
   font-size: max(1.3vw, 1.2rem);
 }
 .nav-bar--account-name {
@@ -175,6 +180,7 @@ body {
   font-size: max(1.3vw, 1.2rem);
   font-weight: 600;
   text-decoration: none;
+  cursor: pointer;
   color: rgb(59, 59, 59);
 }
 .all-navbar-links * {
@@ -192,6 +198,229 @@ body {
 }
 .flyer-icon {
   gap: 0.5rem;
+}
+/* ============== Flyer ============ */
+
+.flyer-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  height: 100%;
+  background-color: rgba(36, 36, 36, 0.95);
+}
+.zoomable-draggable-image-container {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -53%);
+
+  margin: 0 auto;
+  max-width: 80%;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: max(50vw, 14rem) max(30vw, 0.9rem);
+  gap: max(2vw, 1rem);
+  justify-content: center;
+}
+.flyer-cross-svg-div {
+  position: absolute;
+  /* background-color: rgb(211, 211, 211); */
+  top: -20%;
+  cursor: pointer;
+  right: -10%;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 21;
+  width: max(6vw, 80px);
+}
+.flyer-cross-svg {
+  width: 100%;
+}
+.flyer-cross-svg-div > :hover {
+  fill: white;
+  stroke: white;
+}
+.flyer-image-div,
+.second-column {
+  max-height: 80vh;
+}
+.flyer-image-div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: white;
+  padding: 3rem;
+  overflow: scroll;
+  min-height: 70vh;
+  width: 100%;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+}
+.second-column {
+  overflow-y: scroll;
+  color: var(--headings-color);
+  border-radius: 2rem;
+}
+.flyer-dicounted-product-img-div {
+  flex: 1 1 100%;
+
+  margin-bottom: 0.5rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+.flyer-dicounted-product-img {
+  object-fit: cover;
+  width: 100%;
+}
+.flyer-dicounted-product-div {
+  background-color: white;
+  border-radius: 2rem 2rem 0 0;
+  padding: max(2vw, 1rem);
+  gap: 2rem;
+
+  margin-bottom: 4rem;
+}
+.flyer-dicounted-main-content {
+}
+.flyer-arrow-svg {
+  width: max(2vw, 50px);
+}
+.flyer-discounted-image-headings-h2 {
+  font-size: max(1.3vw, 0.8rem);
+  font-weight: 600;
+}
+.flyer-offer-ends-txt {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background-color: rgba(157, 1, 1, 0.751);
+  color: white;
+  margin-bottom: 1rem;
+  border-radius: 2rem 2rem 0 0;
+}
+.flyer-discounted-image-prices-section {
+  padding: 1rem;
+  background-color: rgb(239, 238, 238);
+  border: solid 1px rgb(137, 137, 137);
+}
+.flyer-discounted-image-headings-div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.flyer-discounted-image-headings-div:last-of-type {
+  margin-bottom: 0;
+}
+.flyer-discounted-image-title {
+  font-size: max(1.4vw, 1rem);
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+.flyer-discounted-image-price-p {
+  font-size: max(1.3vw, 0.8rem);
+  color: rgba(1, 107, 1, 0.764);
+  font-weight: 600;
+}
+.regualar-price {
+  color: rgb(175, 0, 0);
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+}
+.flyer-discounted-image-details-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  font-size: max(0.8vw, 1.2rem);
+  padding: 1rem;
+  background-color: rgba(0, 0, 77, 0.646);
+  color: white;
+  border-radius: 0 0 2rem 2rem;
+  border: none;
+  text-decoration: none;
+}
+.flyer-discounted-image-details-button:hover {
+  color: white;
+  background-color: rgb(90, 90, 90);
+}
+.zoom-buttons {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  border: none;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.zoom-buttons > * {
+  padding: 0.2rem 0.5rem;
+  /* width: 100%; */
+  font-weight: 500;
+  font-size: max(1.4vw, 1rem);
+}
+.flyer-dicounted-product-img {
+  width: 70%;
+}
+.minus-plus-svgs {
+  width: max(1.5vw, 40px);
+  fill: white;
+}
+.zoom-button {
+  display: flex;
+  padding: 0.2rem 0.6rem;
+  gap: 0.5rem;
+  align-items: center;
+  color: white;
+  border: none;
+  background: rgb(129, 186, 15);
+  cursor: pointer;
+  border-radius: 2rem;
+}
+.zoom-button:hover {
+  background-color: rgb(124, 124, 124);
+}
+.zoom-txt {
+  font-size: max(1.2vw, 0.8rem);
+  width: 100%;
+}
+/* --------- */
+.flyer-image-svgs-div {
+  position: relative;
+}
+.flyer-arrow-svg-div {
+  position: absolute;
+  z-index: 30;
+  top: 30%;
+}
+.flyer-arrow-svg {
+  width: max(5vw, 50px);
+  padding: 1rem;
+  background: #d8d8d8;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  border-radius: 50%;
+}
+.flyer-arrow-svg-left {
+  left: -4%;
+  transform: rotate(-180deg);
+}
+.flyer-arrow-svg-right {
+  right: 0;
+  right: -4%;
+}
+.flyer-all-photos-flex-div {
+  display: flex;
+  flex-direction: column;
+  min-width: 280px;
+  gap: 1rem;
+}
+.flyer-image {
+  width: 100%;
 }
 /*=== Account Name and account options=== */
 .account-name-options--div {
@@ -226,6 +455,8 @@ body {
   background-color: gray;
 }
 /* ===================Single Product Img ============================== */
+
+/* -------------------single-product------------ */
 .single-product-Image-div {
   margin: max(2vw, 3rem) 0;
   max-width: 250px;
@@ -258,8 +489,33 @@ body {
   color: rgb(173, 0, 0);
 }
 .single-product-link {
+  display: flex;
+  padding: 0.5rem;
+
+  align-items: center;
+  flex-direction: column;
   text-decoration: none;
   color: var(--regular-font-color);
+}
+/* ------------------Favorite Section------------*/
+
+.single-product-Image-div {
+  position: relative;
+}
+.product-heart-div {
+  position: absolute;
+  top: 0%;
+  left: -1%;
+  z-index: 10;
+}
+.favorite--heart-icon {
+  width: max(3vw, 30px);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.heart-full {
+  fill: #a52a2a;
 }
 
 /* ===================Featuring Img ========= */
@@ -442,27 +698,6 @@ body {
 .footer-links,
 .footer-title {
   font-size: max(1vw, 0.8rem);
-}
-
-/* ===================Favorite Section============================= */
-
-.single-product-main-section-div {
-  position: relative;
-}
-.product-heart-div {
-  position: absolute;
-  top: 2%;
-  left: -2%;
-  z-index: 10;
-}
-.favorite--heart-icon {
-  width: max(3vw, 30px);
-  opacity: 0.8;
-  cursor: pointer;
-}
-
-.heart-full {
-  fill: #a52a2a;
 }
 
 /* ==============================PRODUCT DESCRIPTION PAGE====================== */
@@ -792,11 +1027,12 @@ body {
   background-color: rgba(255, 255, 255, 0.9);
   top: 0;
   left: 0;
+  overflow: scroll;
   z-index: 10;
 }
 .sign-in-div {
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -841,7 +1077,7 @@ body {
 .sign-in-buttons {
   font-weight: 600;
   border-radius: 1rem;
-  font-size: max(1.5vw, 1.2rem);
+  font-size: max(1.4vw, 1.2rem);
   border: none;
   cursor: pointer;
 }
@@ -859,44 +1095,50 @@ body {
 .signup--form-container {
   position: relative;
 }
+
 .sign-up--cross-button-div {
   position: absolute;
-  top: 0%;
-  right: 0;
+  top: 7%;
+  right: 9%;
 }
 .sign-up-container {
+  background-color: rgba(255, 255, 255, 0.9);
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
   z-index: 12;
+  overflow: scroll;
 }
+
 .signup--form-container {
   display: flex;
+  background-color: white;
+
   flex-direction: column;
   gap: 0.2rem;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  margin: 2.2rem auto 0 auto;
+
+  margin: 10rem 0;
 }
 .signup--form-title {
-  font-size: max(1.5vw, 1.2rem);
+  font-size: max(2vw, 1.2rem);
   color: var(--theme-color-blue);
 }
 .signup--top-logo {
-  width: max(10vw, 120px);
+  width: max(13vw, 120px);
 }
 .signup-form-div {
   border-radius: 0.5rem;
   gap: 1rem;
   width: max(40vw, 310px);
   padding: 1rem;
-  background-color: white;
-  margin-bottom: 5rem;
+  margin: 2rem;
+  padding-bottom: 5rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 .signup-form-div > * {
@@ -1055,6 +1297,7 @@ body {
   .bestDeals-slider-div {
     position: relative;
   }
+
   .bestDeals-slider--category-title-div {
     position: absolute;
     width: 100%;
@@ -1070,10 +1313,6 @@ body {
   .signup-form-div {
     width: max(70vw, 310px);
   }
-  .sign-up--cross-button-div {
-    top: 2%;
-    right: -2%;
-  }
 }
 @media (max-width: 700px) {
   .bestDeals-slider-div {
@@ -1081,6 +1320,12 @@ body {
   }
   .all-items-click-more {
     margin-bottom: 4rem;
+  }
+  .second-column {
+    display: none;
+  }
+  .zoomable-draggable-image-container {
+    grid-template-columns: 90vw;
   }
 }
 
