@@ -6,6 +6,7 @@ import "./App.css";
 import ProductDescription from "./components/productDescription";
 import CartPage from "./components/cartFolder/cartPage";
 import StoreFinder from "./components/NavBar/navOptions/allNavPages/StoreFinder";
+import SignUpPage from "./components/signInPage/signUpPage";
 import MyAccount from "./components/NavBar/myAccount";
 import {
   createBrowserRouter,
